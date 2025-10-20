@@ -1,9 +1,9 @@
 name: ${REPO_NAME}
 
 services:
-  nuxt:
-    image: ${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nuxt:${TAG:-latest}
-    container_name: nuxt
+  nitro:
+    image: ${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nitro:${TAG:-latest}
+    container_name: nitro
     environment:
       NODE_ENV: production
     env_file:
@@ -15,7 +15,7 @@ services:
       args:
         CI: ${CI:-false}
       tags:
-        - '${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nuxt:latest'
+        - '${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nitro:latest'
     networks:
       - app-network
     ports:
