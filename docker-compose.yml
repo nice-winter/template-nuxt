@@ -1,0 +1,29 @@
+name: ${REPO_NAME}
+
+services:
+  nuxt:
+    image: ${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nuxt:${TAG:-latest}
+    container_name: nuxt
+    environment:
+      NODE_ENV: production
+    env_file:
+      - ./.env
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        CI: ${CI:-false}
+      tags:
+        - '${REPOSITORY:-${COMPOSE_PROJECT_NAME}}/nuxt:latest'
+    networks:
+      - app-network
+    ports:
+      - 3000:3000
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  logs:
